@@ -2,23 +2,23 @@ const path = require('path')
 
 module.exports = {
   mode: 'development',
-  entry: path.resolve(__dirname, 'src/index.jsx'),
-  devtool: 'eval-source-map',
+  entry: path.resolve(__dirname, 'src/index.tsx'),
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.tsx?$/,
+        use: 'ts-loader',
         exclude: /node_modules/,
-        use: ['babel-loader'],
       },
       {
-        test: /\.(s(a|c)ss)$/,
+        test: /\.(scss)$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
     path: path.resolve(__dirname, 'public'),
